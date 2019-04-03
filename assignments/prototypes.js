@@ -153,6 +153,7 @@ Humanoid.prototype.greet = function () {
       getGameMsg(opponent);
       counter++;
       updateButton();
+      updateScreen(opponent);
     }
     this.totalDestruction = this.healthPoints <= 0? true : false;
   }
@@ -168,6 +169,7 @@ Humanoid.prototype.greet = function () {
       getGameMsg(opponent);
       counter++;
       updateButton();
+      updateScreen(opponent);
      
     }
     this.totalDestruction = this.healthPoints <= 0? true : false;
@@ -188,8 +190,8 @@ Humanoid.prototype.greet = function () {
   }
 
   function setupCharacter() {
-    hero = new Hero({name:"hero", createdAt:new Date(), dimensions:"large", team:"good", weapons:"gun", language:"pigkokolatin", healthPoints:100});
-    vil = new Villain({name:"villan", createdAt:new Date(), dimensions:"large", team:"bad", weapons:"rifle", language:"piglatin", healthPoints:100});
+    hero = new Hero({name:"hero", createdAt:new Date(), dimensions:"large", team:"good", weapons:"gun", language:"pigkokolatin", healthPoints:50});
+    vil = new Villain({name:"villan", createdAt:new Date(), dimensions:"large", team:"bad", weapons:"rifle", language:"piglatin", healthPoints:50});
   }
  
 
@@ -197,8 +199,11 @@ Humanoid.prototype.greet = function () {
     el("startGame").classList="hidden";
     el("charWrapper").classList="show";
     el("gameMsg").classList="show";
+    el("playAgain").classList="hidden";
     el("villanMsg").innerHTML = vil.healthPoints;
     el("heroMsg").innerHTML = hero.healthPoints;
+    el("heroCardWrapper").classList="cardWrapper";
+    el("villanCardWrapper").classList="cardWrapper";
   }
 
   function updateVillanScore(opponent) {
@@ -214,6 +219,14 @@ Humanoid.prototype.greet = function () {
       el("heroMsg").innerHTML = 0;
     } else {
       el("heroMsg").innerHTML = opponent.healthPoints;
+    }
+  }
+ 
+  function updateScreen(opponent) {
+    let wrapper = (opponent === "hero")? "heroCardWrapper": "villanCardWrapper";
+    if(opponent.healthPoints <=0){
+      el(wrapper).classList="charRemove";   
+      el("playAgain").classList="show";
     }
   }
 

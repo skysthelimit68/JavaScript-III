@@ -12,7 +12,7 @@ html {
     margin:0 auto;
 }
 
-#startGame {
+#startGame, #playAgain {
     width: 80%;
     border-radius: 10px;
     background: green;
@@ -99,6 +99,10 @@ html {
     max-width:300px;
 }
 .hidden {
+    display:none !important;
+}
+
+.charRemove{
     display:none !important;
 }
 
