@@ -148,7 +148,8 @@ Humanoid.prototype.greet = function () {
     Humanoid.call(this, atts);
     this.attack = function(opponent) {
       opponent.healthPoints = opponent.healthPoints - randomizer();
-      el("heroMsg").innerHTML = opponent.healthPoints;
+      updateHeroScore(opponent);
+      getGameMsg(opponent);
     }
     this.totalDestruction = this.healthPoints <= 0? true : false;
   }
@@ -159,13 +160,16 @@ Humanoid.prototype.greet = function () {
     Humanoid.call(this, atts);
     this.attack = function(opponent) {
       opponent.healthPoints = opponent.healthPoints - randomizer();
-      el("villanMsg").innerHTML = opponent.healthPoints;
+      updateVillanScore(opponent);
+      getGameMsg(opponent);
+     
     }
     this.totalDestruction = this.healthPoints <= 0? true : false;
   }
 
   Hero.prototype = Object.create(Humanoid.prototype);
 
+  
   
   let hero;
   let vil;
@@ -188,7 +192,21 @@ Humanoid.prototype.greet = function () {
     el("heroMsg").innerHTML = hero.healthPoints;
   }
   
+  function updateVillanScore(opponent) {
+    el("villanMsg").innerHTML = opponent.healthPoints;
+  }
 
+  function updateHeroScore(opponent) {
+    el("heroMsg").innerHTML = opponent.healthPoints;
+  }
+
+  function getGameMsg(opponent) {
+    if(opponent.totalDestruction){
+        el("gameMsg").innerHTML = opponent.destroy();
+    } else {
+        el("gameMsg").innerHTML = opponent.takeDamage();
+    }
+  }  
 
   function randomizer(){
       return Math.floor(Math.random() * 10) + 1;
