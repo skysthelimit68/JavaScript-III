@@ -1,3 +1,24 @@
 .container {
     display:flex;
 }
+#villanCard {
+    width:30%;
+    height:300px;
+    background:red;
+}
+#heroCard {
+    width:30%;
+    height:300px;
+    background:blue;
+}
+
+#heroCard img, #villanCard img {
+    width:100%;
+}
+.hidden {
+    display:none;
+}
+
+.show {
+    display:flex;
+}

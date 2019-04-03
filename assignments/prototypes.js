@@ -149,7 +149,9 @@ Humanoid.prototype.greet = function () {
     this.attack = function(opponent) {
       opponent.healthPoints = opponent.healthPoints - randomizer();
     }
+    this.totalDestruction = this.healthPoints <= 0? true : false;
   }
+
   Villain.prototype = Object.create(Humanoid.prototype);
 
   function Hero(atts) {
@@ -157,11 +159,39 @@ Humanoid.prototype.greet = function () {
     this.attack = function(opponent) {
       opponent.healthPoints = opponent.healthPoints - randomizer();
     }
+    this.totalDestruction = this.healthPoints <= 0? true : false;
   }
+
   Hero.prototype = Object.create(Humanoid.prototype);
 
-  function randomizer(){
-    return Math.floor(Math.random() * 10) + 1;
+  
+  let hero;
+  let vil;
+
+  function startGame() {
+    setupCharacter();
+    setupScreen(); 
   }
 
+  function setupCharacter() {
+    hero = new Hero({name:"hero", createdAt:new Date(), dimensions:"large", team:"good", weapons:"gun", language:"pigkokolatin", healthPoints:100});
+    vil = new Villain({name:"villan", createdAt:new Date(), dimensions:"large", team:"bad", weapons:"rifle", language:"piglatin", healthPoints:100});
+  }
+ 
+
+  function setupScreen() {
+    el("startGame").classList="hidden";
+    el("villanCard").classList="show";
+    el("heroCard").classList="show"
+  }
+  
+
+
+
+  function randomizer(){
+      return Math.floor(Math.random() * 10) + 1;
+    }
+  function el(id){
+    return document.getElementById(id);
+  }
  
