@@ -148,6 +148,7 @@ Humanoid.prototype.greet = function () {
     Humanoid.call(this, atts);
     this.attack = function(opponent) {
       opponent.healthPoints = opponent.healthPoints - randomizer();
+      el("heroMsg").innerHTML = opponent.healthPoints;
     }
     this.totalDestruction = this.healthPoints <= 0? true : false;
   }
@@ -158,6 +159,7 @@ Humanoid.prototype.greet = function () {
     Humanoid.call(this, atts);
     this.attack = function(opponent) {
       opponent.healthPoints = opponent.healthPoints - randomizer();
+      el("villanMsg").innerHTML = opponent.healthPoints;
     }
     this.totalDestruction = this.healthPoints <= 0? true : false;
   }
@@ -181,11 +183,11 @@ Humanoid.prototype.greet = function () {
 
   function setupScreen() {
     el("startGame").classList="hidden";
-    el("villanCard").classList="show";
-    el("heroCard").classList="show"
+    el("charWrapper").classList="show";
+    el("villanMsg").innerHTML = vil.healthPoints;
+    el("heroMsg").innerHTML = hero.healthPoints;
   }
   
-
 
 
   function randomizer(){

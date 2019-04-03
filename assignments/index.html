@@ -16,29 +16,33 @@
   <h1>JS III - Check your work in the console!</h1>
   <div class="container">
     <div id="startGame" class="show" onClick="startGame();">Start New Game</div>
-      <div id="heroCard" class="hidden">
-        <div id="heroImg">
-          <img src="img/vikingNeutral.png">
+    <div id="charWrapper" class="hidden"> 
+      <div class="cardWrapper">
+        <div id="heroCard">
+            <div id="heroImg">
+              <img src="img/vikingNeutral.png">
+            </div>
+            <div id="heroMsg">
+            </div>
         </div>
-        <div id="heroMsg">
-
-        </div>
-        <div>
+        <button onClick="hero.attack(vil);">
           ATTACK
-        </div>>
-
+        </button>
       </div>
-      <div id="villanCard" class="hidden">
-        <div id="villanImg">
-          <img src="img/jasonNeutral_rev.png">
-        </div>
-        <div id="villanMsg">
 
+      <div class="cardWrapper">
+        <div id="villanCard">
+            <div id="villanImg">
+              <img src="img/jasonNeutral_rev.png">
+            </div>
+            <div id="villanMsg">       
+            </div>   
         </div>
-        <div>
-          ATTACK
-        </div>
+        <button onClick="vil.attack(hero);">
+            ATTACK
+        </button>
       </div>
+    </div>
   </div>
 </body>
 </html>
