@@ -1,10 +1,10 @@
 /* The for principles of "this";
 * in your own words. explain the four principle for the "this" keyword below.
 *
-* 1. Window Binding
-* 2. Implicit Binding
-* 3. New Binding
-* 4. Explicit Binding
+* 1. when in global scope, "this" binds to the Window object
+* 2. when a function is called by a preceding dot, such as a method, the object which the method belongs to is "this".
+* 3. when a constructor function is used to create instance, "this" binds to the instance of the Object.
+* 4. "this" is explicit defined whenever a call(), bind() or apply() method is used
 *
 * write out a code example of each explanation above
 */

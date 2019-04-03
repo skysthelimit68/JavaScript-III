@@ -196,16 +196,25 @@ Humanoid.prototype.greet = function () {
   function setupScreen() {
     el("startGame").classList="hidden";
     el("charWrapper").classList="show";
+    el("gameMsg").classList="show";
     el("villanMsg").innerHTML = vil.healthPoints;
     el("heroMsg").innerHTML = hero.healthPoints;
   }
 
   function updateVillanScore(opponent) {
-    el("villanMsg").innerHTML = opponent.healthPoints;
+    if(opponent.healthPoints <=0) {
+      el("villanMsg").innerHTML = 0;
+    } else {
+      el("villanMsg").innerHTML = opponent.healthPoints;
+    }
   }
 
   function updateHeroScore(opponent) {
-    el("heroMsg").innerHTML = opponent.healthPoints;
+    if(opponent.healthPoints <=0) {
+      el("heroMsg").innerHTML = 0;
+    } else {
+      el("heroMsg").innerHTML = opponent.healthPoints;
+    }
   }
 
   function updateButton() {
