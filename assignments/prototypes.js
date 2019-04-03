@@ -147,9 +147,12 @@ Humanoid.prototype.greet = function () {
   function Villain(atts) {
     Humanoid.call(this, atts);
     this.attack = function(opponent) {
+      
       opponent.healthPoints = opponent.healthPoints - randomizer();
       updateHeroScore(opponent);
       getGameMsg(opponent);
+      counter++;
+      updateButton();
     }
     this.totalDestruction = this.healthPoints <= 0? true : false;
   }
@@ -159,9 +162,12 @@ Humanoid.prototype.greet = function () {
   function Hero(atts) {
     Humanoid.call(this, atts);
     this.attack = function(opponent) {
+      
       opponent.healthPoints = opponent.healthPoints - randomizer();
       updateVillanScore(opponent);
       getGameMsg(opponent);
+      counter++;
+      updateButton();
      
     }
     this.totalDestruction = this.healthPoints <= 0? true : false;
@@ -170,13 +176,15 @@ Humanoid.prototype.greet = function () {
   Hero.prototype = Object.create(Humanoid.prototype);
 
   
-  
   let hero;
   let vil;
+  let counter;
 
   function startGame() {
-    setupCharacter();
+    counter = 1;
+    setupCharacter();    
     setupScreen(); 
+    updateButton();
   }
 
   function setupCharacter() {
@@ -191,7 +199,7 @@ Humanoid.prototype.greet = function () {
     el("villanMsg").innerHTML = vil.healthPoints;
     el("heroMsg").innerHTML = hero.healthPoints;
   }
-  
+
   function updateVillanScore(opponent) {
     el("villanMsg").innerHTML = opponent.healthPoints;
   }
@@ -200,8 +208,21 @@ Humanoid.prototype.greet = function () {
     el("heroMsg").innerHTML = opponent.healthPoints;
   }
 
+  function updateButton() {
+    if(hero.healthPoints <= 0 || vil.healthPoints <=0){
+      el("heroButton").disabled = true;
+      el("villanButton").disabled = true;
+    } else if (counter % 2 == 0) {
+      el("heroButton").disabled = false;
+      el("villanButton").disabled = true;
+    } else {
+      el("heroButton").disabled = true;
+      el("villanButton").disabled = false;
+    }
+  }
+
   function getGameMsg(opponent) {
-    if(opponent.totalDestruction){
+    if(opponent.healthPoints <= 0){
         el("gameMsg").innerHTML = opponent.destroy();
     } else {
         el("gameMsg").innerHTML = opponent.takeDamage();
