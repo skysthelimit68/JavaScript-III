@@ -147,7 +147,6 @@ Humanoid.prototype.greet = function () {
   function Villain(atts) {
     Humanoid.call(this, atts);
     this.attack = function(opponent) {
-      
       opponent.healthPoints = opponent.healthPoints - randomizer();
       updateHeroScore(opponent);
       getGameMsg(opponent);
@@ -162,8 +161,7 @@ Humanoid.prototype.greet = function () {
 
   function Hero(atts) {
     Humanoid.call(this, atts);
-    this.attack = function(opponent) {
-      
+    this.attack = function(opponent) { 
       opponent.healthPoints = opponent.healthPoints - randomizer();
       updateVillanScore(opponent);
       getGameMsg(opponent);
@@ -204,6 +202,7 @@ Humanoid.prototype.greet = function () {
     el("heroMsg").innerHTML = hero.healthPoints;
     el("heroCardWrapper").classList="cardWrapper";
     el("villanCardWrapper").classList="cardWrapper";
+    el("gameMsg").innerHTML = "";
   }
 
   function updateVillanScore(opponent) {
@@ -227,6 +226,7 @@ Humanoid.prototype.greet = function () {
     if(opponent.healthPoints <=0){
       el(wrapper).classList="charRemove";   
       el("playAgain").classList="show";
+      
     }
   }
 
