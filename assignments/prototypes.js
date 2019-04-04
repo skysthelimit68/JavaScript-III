@@ -222,7 +222,7 @@ Humanoid.prototype.greet = function () {
   }
  
   function updateScreen(opponent) {
-    let wrapper = (opponent === "hero")? "heroCardWrapper": "villanCardWrapper";
+    let wrapper = (opponent == hero)? "heroCardWrapper": "villanCardWrapper";
     if(opponent.healthPoints <=0){
       el(wrapper).classList="charRemove";   
       el("playAgain").classList="show";
