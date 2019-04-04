@@ -202,7 +202,7 @@ Humanoid.prototype.greet = function () {
     el("heroMsg").innerHTML = hero.healthPoints;
     el("heroCardWrapper").classList="cardWrapper";
     el("villanCardWrapper").classList="cardWrapper";
-    el("gameMsg").innerHTML = "";
+    el("gameMsg").innerHTML = "Let the Battle Begin!";
   }
 
   function updateVillanScore(opponent) {
